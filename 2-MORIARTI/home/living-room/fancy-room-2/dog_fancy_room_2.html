@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RCD Fancy Room 2 - Morphing Reality</title>
+
+  <!-- Rat (CSS) -->
+  <link rel="stylesheet" href="rat_morphing.css">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="../rat_shared_styles.css">
+</head>
+<body>
+<div class="room-container" id="morphing-room">
+  <!-- Room structure -->
+  <div class="room-walls">
+    <div class="wall wall-front"></div>
+    <div class="wall wall-left"></div>
+    <div class="wall wall-right"></div>
+    <div class="wall wall-back"></div>
+    <div class="floor"></div>
+    <div class="ceiling"></div>
+  </div>
+
+  <!-- Morphing furniture -->
+  <div class="furniture-container">
+    <div class="furniture sofa" id="sofa">
+      <div class="sofa-cushions"></div>
+      <div class="sofa-arms"></div>
+    </div>
+
+    <div class="furniture table" id="table">
+      <div class="table-surface"></div>
+      <div class="table-legs"></div>
+    </div>
+
+    <div class="furniture lamp" id="lamp">
+      <div class="lamp-shade"></div>
+      <div class="lamp-base"></div>
+      <div class="lamp-light"></div>
+    </div>
+
+    <div class="furniture bookshelf" id="bookshelf">
+      <div class="shelf-frame"></div>
+      <div class="books"></div>
+    </div>
+  </div>
+
+  <!-- Lighting system -->
+  <div class="lighting-container">
+    <div class="light ambient-light" id="ambient"></div>
+    <div class="light window-light" id="window"></div>
+    <div class="light lamp-glow" id="lamp-glow"></div>
+  </div>
+
+  <!-- Rat inhabitants -->
+  <div class="rat-container">
+    <div class="rat rat-1" id="rat1">
+      <div class="rat-body"></div>
+      <div class="rat-tail"></div>
+    </div>
+    <div class="rat rat-2" id="rat2">
+      <div class="rat-body"></div>
+      <div class="rat-tail"></div>
+    </div>
+    <div class="rat rat-3" id="rat3">
+      <div class="rat-body"></div>
+      <div class="rat-tail"></div>
+    </div>
+  </div>
+
+  <!-- Time controls -->
+  <div class="time-controls">
+    <button class="time-btn" data-time="dawn">🌅 Dawn</button>
+    <button class="time-btn" data-time="day">☀️ Day</button>
+    <button class="time-btn" data-time="sunset">🌇 Sunset</button>
+    <button class="time-btn" data-time="night">🌙 Night</button>
+  </div>
+
+  <!-- Auto time toggle -->
+  <div class="auto-controls">
+    <label class="auto-toggle">
+      <input type="checkbox" id="auto-time">
+      <span>Auto Time Flow</span>
+    </label>
+  </div>
+</div>
+
+<!-- Navigation back to living room -->
+<nav class="room-nav">
+  <a href="../dog_living_room.html" class="nav-link">← Back to Living Room</a>
+</nav>
+
+<!-- Jungle libraries -->
+<script src="../../../jungle/gsap.min.js"></script>
+
+<!-- Cat (JavaScript) -->
+<script src="cat_gsap_controller.js"></script>
+</body>
+</html>

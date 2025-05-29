@@ -1,0 +1,586 @@
+/* ===== RAT MORPHING CSS ===== */
+/* Morphing Reality Room Styles */
+
+:root {
+    /* Time-based color variables */
+    --primary-wall: #f0f0f0;
+    --secondary-wall: #e8e8e8;
+    --floor-color: #8b4513;
+    --ceiling-color: #ffffff;
+    --ambient-light: rgba(255, 255, 255, 0.3);
+    --furniture-primary: #654321;
+    --furniture-secondary: #8b4513;
+    --rat-color: #4a4a4a;
+
+    /* Morphing timing */
+    --morph-duration: 2s;
+    --morph-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === ROOM CONTAINER === */
+.room-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    background: linear-gradient(135deg, var(--primary-wall), var(--secondary-wall));
+    transition: background var(--morph-duration) var(--morph-ease);
+}
+
+/* === ROOM WALLS === */
+.room-walls {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(10deg) rotateY(-5deg);
+}
+
+.wall {
+    position: absolute;
+    background: var(--primary-wall);
+    transition: all var(--morph-duration) var(--morph-ease);
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+}
+
+.wall-front {
+    width: 600px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -200px;
+    transform: translateZ(300px);
+    background: linear-gradient(180deg, var(--primary-wall), var(--secondary-wall));
+}
+
+.wall-left {
+    width: 600px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -200px;
+    transform: rotateY(-90deg) translateZ(300px);
+    background: linear-gradient(180deg,
+    rgba(var(--primary-wall), 0.8),
+    rgba(var(--secondary-wall), 0.8));
+}
+
+.wall-right {
+    width: 600px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -200px;
+    transform: rotateY(90deg) translateZ(300px);
+    background: linear-gradient(180deg,
+    rgba(var(--primary-wall), 0.8),
+    rgba(var(--secondary-wall), 0.8));
+}
+
+.floor {
+    width: 600px;
+    height: 600px;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -100px;
+    background: var(--floor-color);
+    transform: rotateX(90deg) translateZ(-200px);
+    background-image:
+            repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0,0,0,0.1) 52px
+            ),
+            repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(0,0,0,0.1) 52px
+            );
+}
+
+.ceiling {
+    width: 600px;
+    height: 600px;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -300px;
+    background: var(--ceiling-color);
+    transform: rotateX(-90deg) translateZ(200px);
+}
+
+/* === FURNITURE === */
+.furniture-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(10deg) rotateY(-5deg);
+}
+
+.furniture {
+    position: absolute;
+    transition: all var(--morph-duration) var(--morph-ease);
+    transform-style: preserve-3d;
+}
+
+/* Sofa */
+.sofa {
+    width: 200px;
+    height: 100px;
+    left: 20%;
+    top: 60%;
+    background: var(--furniture-primary);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: translateZ(50px);
+}
+
+.sofa-cushions {
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(45deg, var(--furniture-primary), var(--furniture-secondary));
+    border-radius: 10px;
+    transition: all var(--morph-duration) var(--morph-ease);
+}
+
+.sofa-arms {
+    position: absolute;
+    width: 30px;
+    height: 80%;
+    background: var(--furniture-secondary);
+    border-radius: 15px;
+    top: 10%;
+}
+
+.sofa-arms::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: inherit;
+    border-radius: 15px;
+}
+
+.sofa-arms::after {
+    content: '';
+    position: absolute;
+    right: -170px;
+    width: 30px;
+    height: 100%;
+    background: inherit;
+    border-radius: 15px;
+}
+
+/* Table */
+.table {
+    width: 120px;
+    height: 120px;
+    right: 25%;
+    top: 55%;
+    perspective: 500px;
+    transform: translateZ(30px);
+}
+
+.table-surface {
+    width: 100%;
+    height: 20px;
+    background: var(--furniture-primary);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all var(--morph-duration) var(--morph-ease);
+}
+
+.table-legs {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    top: 20px;
+}
+
+.table-legs::before,
+.table-legs::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 100%;
+    background: var(--furniture-secondary);
+    border-radius: 4px;
+}
+
+.table-legs::before {
+    left: 10px;
+    box-shadow: 102px 0 0 var(--furniture-secondary);
+}
+
+.table-legs::after {
+    left: 10px;
+    top: 0;
+    box-shadow: 102px 0 0 var(--furniture-secondary);
+}
+
+/* Lamp */
+.lamp {
+    width: 60px;
+    height: 200px;
+    right: 15%;
+    top: 40%;
+    transition: all var(--morph-duration) var(--morph-ease);
+    transform: translateZ(40px);
+}
+
+.lamp-shade {
+    width: 80px;
+    height: 60px;
+    background: linear-gradient(45deg, #f4f4f4, #e0e0e0);
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+    transition: all var(--morph-duration) var(--morph-ease);
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.lamp-base {
+    width: 20px;
+    height: 120px;
+    background: var(--furniture-secondary);
+    margin: 20px auto 0;
+    border-radius: 10px;
+    transition: all var(--morph-duration) var(--morph-ease);
+}
+
+.lamp-light {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--ambient-light) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -50px;
+    left: -45px;
+    pointer-events: none;
+    transition: all var(--morph-duration) var(--morph-ease);
+}
+
+/* Bookshelf */
+.bookshelf {
+    width: 100px;
+    height: 180px;
+    left: 10%;
+    top: 35%;
+    background: var(--furniture-primary);
+    border-radius: 5px;
+    transform: translateZ(60px);
+    transition: all var(--morph-duration) var(--morph-ease);
+}
+
+.shelf-frame {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, var(--furniture-primary), var(--furniture-secondary));
+    border-radius: 5px;
+}
+
+.books {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 10%;
+    left: 5%;
+    background: repeating-linear-gradient(
+            90deg,
+            #8B4513 0px,
+            #8B4513 8px,
+            #A0522D 8px,
+            #A0522D 16px,
+            #D2691E 16px,
+            #D2691E 24px
+    );
+    border-radius: 3px;
+}
+
+/* === LIGHTING SYSTEM === */
+.lighting-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.light {
+    position: absolute;
+    border-radius: 50%;
+    transition: all var(--morph-duration) var(--morph-ease);
+}
+
+.ambient-light {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, var(--ambient-light) 0%, transparent 70%);
+}
+
+.window-light {
+    width: 300px;
+    height: 400px;
+    right: 5%;
+    top: 10%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+    transform: skewX(-15deg);
+}
+
+/* === RATS === */
+.rat-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    transform: rotateX(10deg) rotateY(-5deg);
+}
+
+.rat {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    transition: all var(--morph-duration) var(--morph-ease);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.rat-body {
+    width: 30px;
+    height: 20px;
+    background: var(--rat-color);
+    border-radius: 50%;
+    position: relative;
+    transition: all var(--morph-duration) var(--morph-ease);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.rat-body::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    right: -8px;
+    top: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.rat-body::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    right: -4px;
+    top: 6px;
+    box-shadow: 0 2px 0 #fff;
+}
+
+.rat-tail {
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #666;
+    border-radius: 50px;
+    right: -20px;
+    top: 50%;
+    transform: rotate(30deg);
+    transition: all var(--morph-duration) var(--morph-ease);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.rat-1 {
+    left: 25%;
+    top: 65%;
+    transform: translateZ(45px);
+    animation: rat-scurry-1 8s infinite ease-in-out;
+}
+
+.rat-2 {
+    right: 35%;
+    top: 70%;
+    transform: translateZ(35px);
+    animation: rat-scurry-2 10s infinite ease-in-out;
+}
+
+.rat-3 {
+    left: 55%;
+    top: 75%;
+    transform: translateZ(55px);
+    animation: rat-scurry-3 12s infinite ease-in-out;
+}
+
+/* === RAT ANIMATIONS === */
+@keyframes rat-scurry-1 {
+    0%, 100% { transform: translateX(0) scale(1); }
+    25% { transform: translateX(100px) scale(1.1); }
+    50% { transform: translateX(50px) scale(0.9); }
+    75% { transform: translateX(-30px) scale(1.05); }
+}
+
+@keyframes rat-scurry-2 {
+    0%, 100% { transform: translateY(0) scale(1); }
+    33% { transform: translateY(-50px) scale(1.2); }
+    66% { transform: translateY(30px) scale(0.8); }
+}
+
+@keyframes rat-scurry-3 {
+    0%, 100% { transform: translateX(0) translateY(0) scale(1); }
+    20% { transform: translateX(-80px) translateY(-20px) scale(1.1); }
+    40% { transform: translateX(40px) translateY(40px) scale(0.9); }
+    60% { transform: translateX(-20px) translateY(-40px) scale(1.05); }
+    80% { transform: translateX(60px) translateY(20px) scale(0.95); }
+}
+
+/* === CONTROLS === */
+.time-controls {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.time-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.9);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.time-btn:hover {
+    background: rgba(255,255,255,1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.time-btn.active {
+    background: rgba(100,100,255,0.8);
+    color: white;
+}
+
+.auto-controls {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.auto-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.auto-toggle:hover {
+    background: rgba(255,255,255,1);
+}
+
+/* === NAVIGATION === */
+.room-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.nav-link:hover {
+    background: rgba(0,0,0,0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* === TIME-BASED THEMES === */
+.room-container.dawn {
+    --primary-wall: #ffeaa7;
+    --secondary-wall: #fdcb6e;
+    --ambient-light: rgba(255, 220, 150, 0.4);
+    --furniture-primary: #8b4513;
+    --furniture-secondary: #a0522d;
+}
+
+.room-container.day {
+    --primary-wall: #f0f0f0;
+    --secondary-wall: #e8e8e8;
+    --ambient-light: rgba(255, 255, 255, 0.6);
+    --furniture-primary: #654321;
+    --furniture-secondary: #8b4513;
+}
+
+.room-container.sunset {
+    --primary-wall: #ff7675;
+    --secondary-wall: #fd79a8;
+    --ambient-light: rgba(255, 150, 100, 0.5);
+    --furniture-primary: #5d4037;
+    --furniture-secondary: #795548;
+}
+
+.room-container.night {
+    --primary-wall: #2d3436;
+    --secondary-wall: #636e72;
+    --ambient-light: rgba(100, 100, 200, 0.3);
+    --furniture-primary: #3e2723;
+    --furniture-secondary: #4e342e;
+    --rat-color: #888;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .furniture {
+        transform: scale(0.8);
+    }
+
+    .time-controls {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .time-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}

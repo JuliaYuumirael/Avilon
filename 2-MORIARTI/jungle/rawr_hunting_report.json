@@ -1,0 +1,22 @@
+{
+  "jaguarTerritory": "jungle/",
+  "huntingSession": "2025-05-24T18:41:32.004Z",
+  "totalCaught": 2,
+  "caughtLibraries": [
+    {
+      "fileName": "lottie.min.js",
+      "name": "Lottie",
+      "description": "Векторные анимации",
+      "size": 305543,
+      "caughtAt": "2025-05-24T18:41:30.929Z"
+    },
+    {
+      "fileName": "anime.min.js",
+      "name": "Anime.js",
+      "description": "Легковесные анимации",
+      "size": 17741,
+      "caughtAt": "2025-05-24T18:41:31.502Z"
+    }
+  ],
+  "totalSize": 323284
+}

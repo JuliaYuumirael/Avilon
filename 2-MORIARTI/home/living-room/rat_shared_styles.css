@@ -1,0 +1,387 @@
+/* 🐭 Rat Shared Styles - Стили для этажа гостиных */
+/* Крысы создают всю визуальную магию этажа */
+
+/* ============ ПЕРЕМЕННЫЕ КРЫС ============ */
+:root {
+    /* Основная цветовая палитра */
+    --magic-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --room-bg: rgba(255, 255, 255, 0.15);
+    --room-border: rgba(255, 255, 255, 0.2);
+    --text-white: white;
+    --text-shadow: rgba(0, 0, 0, 0.3);
+
+    /* Анимации и переходы */
+    --room-hover-scale: 1.02;
+    --transition-magic: transform 0.3s ease, box-shadow 0.3s ease;
+    --transition-smooth: all 0.3s ease;
+
+    /* Размеры и отступы */
+    --border-radius: 20px;
+    --card-padding: 30px;
+    --grid-gap: 30px;
+
+    /* Тени */
+    --shadow-light: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ============ СБРОС И ОСНОВЫ ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ============ ОСНОВНОЙ КОНТЕЙНЕР ============ */
+.living-room-container {
+    min-height: 100vh;
+    background: var(--magic-gradient);
+    padding: 20px;
+    position: relative;
+}
+
+/* ============ ЗАГОЛОВОК ЭТАЖА ============ */
+.floor-header {
+    text-align: center;
+    background: var(--room-bg);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid var(--room-border);
+    box-shadow: var(--shadow-light);
+}
+
+.floor-title {
+    font-size: 3em;
+    color: var(--text-white);
+    text-shadow: 2px 2px 4px var(--text-shadow);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.floor-subtitle {
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.floor-description {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ============ СЕТКА КОМНАТ ============ */
+.room-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--grid-gap);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ============ КАРТОЧКИ КОМНАТ ============ */
+.room-card {
+    background: var(--room-bg);
+    border-radius: var(--border-radius);
+    padding: var(--card-padding);
+    border: 1px solid var(--room-border);
+    transition: var(--transition-magic);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}
+
+/* Эффект блика при наведении */
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent);
+    transition: left 0.5s;
+}
+
+.room-card:hover::before {
+    left: 100%;
+}
+
+.room-card:hover {
+    transform: translateY(-10px) scale(var(--room-hover-scale));
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============ СОДЕРЖИМОЕ КАРТОЧЕК ============ */
+.room-icon {
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 2px 4px var(--text-shadow));
+}
+
+.room-name {
+    font-size: 1.5em;
+    color: var(--text-white);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px var(--text-shadow);
+}
+
+.room-tech {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.room-description {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* ============ СТАТУСЫ КОМНАТ ============ */
+.room-status {
+    text-align: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-ready {
+    background: rgba(76, 175, 80, 0.3);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.5);
+}
+
+.status-coming-soon {
+    background: rgba(255, 152, 0, 0.3);
+    color: #FF9800;
+    border: 1px solid rgba(255, 152, 0, 0.5);
+}
+
+.status-in-development {
+    background: rgba(33, 150, 243, 0.3);
+    color: #2196F3;
+    border: 1px solid rgba(33, 150, 243, 0.5);
+}
+
+/* ============ НАВИГАЦИЯ НАЗАД ============ */
+.back-navigation {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 15px 25px;
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+}
+
+/* ============ ЗВЕЗДНЫЙ ФОН ============ */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    background: var(--text-white);
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* ============ УВЕДОМЛЕНИЯ ============ */
+.coming-soon-notification {
+    /* Стили управляются через JavaScript */
+}
+
+.notification-content {
+    /* Стили управляются через JavaScript */
+}
+
+.notification-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.tech-info {
+    color: #666;
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.difficulty {
+    color: #999;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.close-notification:hover {
+    background: #5a5fd7 !important;
+    transform: translateY(-2px);
+}
+
+/* ============ РЕЖИМ БЕЗ АНИМАЦИЙ ============ */
+.animations-disabled * {
+    animation: none !important;
+    transition: none !important;
+}
+
+.animations-disabled .room-card:hover {
+    transform: none !important;
+}
+
+.animations-disabled .star {
+    animation: none !important;
+    opacity: 0.5 !important;
+}
+
+/* ============ АДАПТИВНОСТЬ ============ */
+@media (max-width: 768px) {
+    :root {
+        --grid-gap: 20px;
+        --card-padding: 25px;
+    }
+
+    .living-room-container {
+        padding: 15px;
+    }
+
+    .floor-title {
+        font-size: 2.2em;
+    }
+
+    .floor-header {
+        padding: 30px 20px;
+    }
+
+    .room-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .room-icon {
+        font-size: 3em;
+    }
+
+    .back-button {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --grid-gap: 15px;
+        --card-padding: 20px;
+    }
+
+    .floor-title {
+        font-size: 1.8em;
+        letter-spacing: 1px;
+    }
+
+    .floor-subtitle {
+        font-size: 1.1em;
+    }
+
+    .floor-description {
+        font-size: 1em;
+    }
+
+    .room-name {
+        font-size: 1.3em;
+    }
+
+    .back-navigation {
+        top: 10px;
+        left: 10px;
+    }
+}
+
+/* ============ ВЫСОКАЯ ПРОИЗВОДИТЕЛЬНОСТЬ ============ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .star {
+        animation: none;
+        opacity: 0.5;
+    }
+}
+
+/* ============ PRINT СТИЛИ ============ */
+@media print {
+    .stars,
+    .back-navigation,
+    .coming-soon-notification {
+        display: none !important;
+    }
+
+    .living-room-container {
+        background: white !important;
+        color: black !important;
+    }
+
+    .room-card {
+        background: #f5f5f5 !important;
+        border: 1px solid #ccc !important;
+        break-inside: avoid;
+    }
+}

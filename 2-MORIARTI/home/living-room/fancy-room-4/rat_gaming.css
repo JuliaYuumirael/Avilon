@@ -1,0 +1,592 @@
+/* ===== RAT GAMING CSS ===== */
+/* Gaming Room Styles - Mac Optimized */
+
+:root {
+    /* Gaming color scheme */
+    --gaming-primary: #2c3e50;
+    --gaming-secondary: #34495e;
+    --gaming-accent: #e74c3c;
+    --gaming-success: #27ae60;
+    --gaming-warning: #f39c12;
+    --gaming-info: #3498db;
+
+    /* UI colors */
+    --panel-bg: rgba(44, 62, 80, 0.9);
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ecf0f1;
+    --text-secondary: rgba(236, 240, 241, 0.7);
+
+    /* Performance optimized animations */
+    --fast-transition: 0.15s ease;
+    --smooth-transition: 0.3s ease;
+}
+
+/* === ROOM CONTAINER === */
+.room-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2c3e50, #34495e, #2c3e50);
+    font-family: 'Courier New', monospace;
+}
+
+/* === PERFORMANCE PANEL === */
+.performance-panel {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    min-width: 180px;
+}
+
+.performance-panel h4 {
+    margin: 0 0 8px 0;
+    color: var(--gaming-warning);
+    font-size: 14px;
+}
+
+.perf-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perf-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+#quality-select {
+    background: var(--gaming-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--panel-border);
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 11px;
+}
+
+.fps-counter {
+    color: var(--gaming-success);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* === GAME CONTAINER === */
+.game-container {
+    position: absolute;
+    width: 70%;
+    height: 80%;
+    top: 10%;
+    left: 15%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--panel-border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#game-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* === GAME HUD === */
+.game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.hud-section {
+    position: absolute;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.score-section {
+    top: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.score-display, .level-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.score-label, .level-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.score-value, .level-value {
+    color: var(--gaming-success);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.colony-section {
+    top: 15px;
+    right: 15px;
+    min-width: 120px;
+}
+
+.colony-section h4 {
+    margin: 0 0 8px 0;
+    color: var(--gaming-info);
+    font-size: 12px;
+}
+
+.colony-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-icon {
+    font-size: 14px;
+}
+
+.stat-value {
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/* === FOOD PANEL === */
+.food-panel {
+    position: fixed;
+    left: 20px;
+    top: 15%;
+    width: 280px;
+    max-height: 65%;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.food-panel h3 {
+    margin: 0 0 15px 0;
+    color: var(--gaming-accent);
+    font-size: 16px;
+    text-align: center;
+}
+
+.food-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.food-category {
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.category-title {
+    margin: 0 0 10px 0;
+    color: var(--gaming-info);
+    font-size: 14px;
+    border-bottom: 1px solid var(--panel-border);
+    padding-bottom: 5px;
+}
+
+.food-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.food-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--fast-transition);
+    border: 1px solid transparent;
+}
+
+.food-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(3px);
+}
+
+.food-item.selected {
+    border-color: var(--gaming-success);
+    background: rgba(39, 174, 96, 0.2);
+}
+
+.food-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.food-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.food-name {
+    color: var(--text-primary);
+    font-size: 12px;
+    flex-grow: 1;
+}
+
+.food-count {
+    color: var(--gaming-warning);
+    font-weight: bold;
+    font-size: 12px;
+    background: rgba(243, 156, 18, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+/* === FEEDING SECTION === */
+.feeding-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--panel-border);
+    text-align: center;
+}
+
+.selected-food {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.feed-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--gaming-success);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--fast-transition);
+    font-size: 14px;
+}
+
+.feed-button:hover:not(:disabled) {
+    background: #229954;
+    transform: translateY(-2px);
+}
+
+.feed-button:disabled {
+    background: var(--gaming-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* === ACHIEVEMENTS PANEL === */
+.achievements-panel {
+    position: fixed;
+    right: 20px;
+    top: 20%;
+    width: 250px;
+    max-height: 60%;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.achievements-panel h3 {
+    margin: 0 0 15px 0;
+    color: var(--gaming-warning);
+    font-size: 16px;
+    text-align: center;
+}
+
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid var(--panel-border);
+    transition: all var(--fast-transition);
+}
+
+.achievement.unlocked {
+    border-color: var(--gaming-success);
+    background: rgba(39, 174, 96, 0.1);
+}
+
+.achievement.unlocked .achievement-icon {
+    animation: achievement-pulse 2s infinite;
+}
+
+.achievement-icon {
+    font-size: 24px;
+    width: 32px;
+    text-align: center;
+}
+
+.achievement.locked .achievement-icon {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.achievement-info {
+    flex-grow: 1;
+}
+
+.achievement-name {
+    color: var(--text-primary);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.achievement-desc {
+    color: var(--text-secondary);
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+@keyframes achievement-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* === GAME CONTROLS === */
+.game-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.control-btn {
+    padding: 10px 15px;
+    background: var(--gaming-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all var(--fast-transition);
+    font-size: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.control-btn:hover {
+    background: var(--gaming-primary);
+    transform: translateY(-2px);
+}
+
+.control-btn.active {
+    background: var(--gaming-success);
+}
+
+/* === INSTRUCTIONS === */
+.instructions-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 280px;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.instructions-panel h3 {
+    margin: 0 0 10px 0;
+    color: var(--gaming-info);
+    font-size: 14px;
+}
+
+.instruction-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instruction-list li {
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+.instruction-list strong {
+    color: var(--text-primary);
+}
+
+/* === NAVIGATION === */
+.room-nav {
+    position: fixed;
+    bottom: 20px;
+    right: 280px;
+    z-index: 1000;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all var(--smooth-transition);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--panel-border);
+    font-size: 12px;
+}
+
+.nav-link:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+}
+
+/* === FOOD ANIMATIONS (Performance Optimized) === */
+.anim-bounce {
+    animation: gentle-bounce 2s infinite ease-in-out;
+}
+
+.anim-spin {
+    animation: gentle-spin 3s infinite linear;
+}
+
+.anim-glow {
+    animation: gentle-glow 2s infinite alternate ease-in-out;
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes gentle-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes gentle-glow {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* === EFFECTS (Lightweight) === */
+.effect-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.effect-blur {
+    filter: blur(1px);
+}
+
+.effect-scale {
+    transform: scale(1.05);
+    transition: transform var(--fast-transition);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+    .food-panel, .achievements-panel {
+        width: 220px;
+    }
+
+    .game-container {
+        width: 60%;
+        left: 20%;
+    }
+}
+
+@media (max-width: 768px) {
+    .food-panel {
+        width: 200px;
+        max-height: 50%;
+    }
+
+    .achievements-panel {
+        width: 200px;
+        max-height: 40%;
+    }
+
+    .game-container {
+        width: 90%;
+        left: 5%;
+        height: 60%;
+    }
+
+    .instructions-panel {
+        width: 200px;
+    }
+}
+
+/* === MAC OPTIMIZATION === */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Performance mode classes */
+.performance-low .anim-bounce,
+.performance-low .anim-spin,
+.performance-low .anim-glow {
+    animation: none;
+}
+
+.performance-low .effect-blur {
+    filter: none;
+}
+
+.performance-low .achievement.unlocked .achievement-icon {
+    animation: none;
+}

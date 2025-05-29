@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RCD Fancy Room 3 - Interactive Magic</title>
+
+  <!-- Rat (CSS) -->
+  <link rel="stylesheet" href="rat_interactive.css">
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="../rat_shared_styles.css">
+</head>
+<body>
+<div class="room-container" id="interactive-room">
+  <!-- Magic Canvas Container -->
+  <div class="canvas-container">
+    <canvas id="main-canvas"></canvas>
+    <canvas id="ripple-canvas"></canvas>
+    <div class="canvas-overlay">
+      <div class="magic-particles" id="particles"></div>
+    </div>
+  </div>
+
+  <!-- Drawing Tools Panel -->
+  <div class="tools-panel">
+    <h3 class="tools-title">🎨 Магические Инструменты</h3>
+
+    <!-- Brush Types -->
+    <div class="tool-section">
+      <label class="tool-label">Кисть:</label>
+      <div class="brush-selector">
+        <button class="brush-btn active" data-brush="pencil">✏️ Карандаш</button>
+        <button class="brush-btn" data-brush="magic">✨ Магия</button>
+        <button class="brush-btn" data-brush="tail">🐀 Хвост</button>
+        <button class="brush-btn" data-brush="sparkle">⭐ Искры</button>
+      </div>
+    </div>
+
+    <!-- Brush Size -->
+    <div class="tool-section">
+      <label class="tool-label">Размер:</label>
+      <input type="range" id="brush-size" min="2" max="50" value="15" class="slider">
+      <span id="size-display">15px</span>
+    </div>
+
+    <!-- Colors -->
+    <div class="tool-section">
+      <label class="tool-label">Цвет:</label>
+      <div class="color-palette">
+        <div class="color-swatch active" data-color="#4a4a4a" style="background: #4a4a4a;"></div>
+        <div class="color-swatch" data-color="#8B4513" style="background: #8B4513;"></div>
+        <div class="color-swatch" data-color="#FF6B6B" style="background: #FF6B6B;"></div>
+        <div class="color-swatch" data-color="#4ECDC4" style="background: #4ECDC4;"></div>
+        <div class="color-swatch" data-color="#45B7D1" style="background: #45B7D1;"></div>
+        <div class="color-swatch" data-color="#96CEB4" style="background: #96CEB4;"></div>
+        <div class="color-swatch" data-color="#FFEAA7" style="background: #FFEAA7;"></div>
+        <div class="color-swatch" data-color="#DDA0DD" style="background: #DDA0DD;"></div>
+      </div>
+    </div>
+
+    <!-- Magic Effects -->
+    <div class="tool-section">
+      <label class="tool-label">Эффекты:</label>
+      <div class="effect-toggles">
+        <label class="toggle-label">
+          <input type="checkbox" id="glow-effect" checked>
+          <span>💫 Свечение</span>
+        </label>
+        <label class="toggle-label">
+          <input type="checkbox" id="particle-trail">
+          <span>✨ Следы</span>
+        </label>
+        <label class="toggle-label">
+          <input type="checkbox" id="auto-animate" checked>
+          <span>🎭 Автоанимация</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="tool-section">
+      <div class="action-buttons">
+        <button id="clear-canvas" class="action-btn clear-btn">🗑️ Очистить</button>
+        <button id="save-creation" class="action-btn save-btn">💾 Сохранить</button>
+        <button id="animate-all" class="action-btn animate-btn">🎬 Оживить всё</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creature Gallery -->
+  <div class="gallery-panel">
+    <h3 class="gallery-title">🖼️ Галерея Созданий</h3>
+    <div class="gallery-container" id="creature-gallery">
+      <div class="gallery-item template-item">
+        <div class="creature-preview"></div>
+        <div class="creature-info">
+          <span class="creature-name">Имя существа</span>
+          <div class="creature-actions">
+            <button class="creature-btn spawn-btn">👁️ Показать</button>
+            <button class="creature-btn clone-btn">📋 Клонировать</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Magic Instructions -->
+  <div class="instructions-panel">
+    <h3>📜 Инструкции Мага</h3>
+    <ul class="instruction-list">
+      <li>🎨 <strong>Рисуйте:</strong> Водите мышью по холсту, создавая магических существ</li>
+      <li>🌊 <strong>Рябь:</strong> Каждое движение создает волны энергии</li>
+      <li>✨ <strong>Оживление:</strong> Законченные рисунки автоматически анимируются</li>
+      <li>🎭 <strong>Взаимодействие:</strong> Кликайте по созданным существам для их активации</li>
+      <li>💫 <strong>Магия:</strong> Используйте разные кисти для уникальных эффектов</li>
+    </ul>
+  </div>
+
+  <!-- Ripple Effects Container -->
+  <div class="ripple-container" id="ripple-container"></div>
+
+  <!-- Navigation back to living room -->
+  <nav class="room-nav">
+    <a href="../dog_living_room.html" class="nav-link">← Back to Living Room</a>
+  </nav>
+</div>
+
+<!-- Jungle libraries -->
+<script src="../../../jungle/p5.min.js"></script>
+<!-- CDN fallback for p5.js -->
+<script>
+  if (typeof p5 === 'undefined') {
+    console.log('Loading p5.js from CDN...');
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js';
+    document.head.appendChild(script);
+  }
+</script>
+
+<!-- Cat (JavaScript) -->
+<script src="cat_canvas_controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "roomInfo": {
+    "id": "fancy-room-1",
+    "name": "Живые крысы",
+    "description": "3D крысы бегают по экрану и реагируют на курсор",
+    "technologies": ["Three.js", "Cannon.js"]
+  },
+  "performance": {
+    "maxRats": 5,
+    "targetFPS": 60,
+    "enablePhysics": true,
+    "enableShadows": false,
+    "enableReflections": false,
+    "autoQualityAdjust": true,
+    "emergencyStopEnabled": true
+  },
+  "rats": {
+    "defaultCount": 3,
+    "maxCount": 7,
+    "minCount": 1,
+    "size": {
+      "width": 0.3,
+      "height": 0.3,
+      "depth": 0.3
+    },
+    "colors": [
+      "#8B4513",
+      "#A0522D",
+      "#CD853F",
+      "#D2691E",
+      "#F4A460"
+    ],
+    "speed": {
+      "min": 0.5,
+      "max": 2.0,
+      "panicMultiplier": 3.0
+    },
+    "behavior": {
+      "curiosity": 0.3,
+      "fearRadius": 2.0,
+      "returnToCenter": true,
+      "wanderStrength": 0.1
+    }
+  },
+  "scene": {
+    "backgroundColor": "#1a1a2e",
+    "ambientLightIntensity": 0.4,
+    "directionalLightIntensity": 0.8,
+    "cameraPosition": {
+      "x": 0,
+      "y": 5,
+      "z": 10
+    },
+    "floorSize": 10,
+    "wallHeight": 3
+  },
+  "interaction": {
+    "mouseInfluence": true,
+    "touchSupport": true,
+    "keyboardControls": true,
+    "cameraControls": false
+  },
+  "debug": {
+    "showStats": true,
+    "showPhysicsWireframes": false,
+    "logPerformance": true,
+    "showFPSWarning": true
+  }
+}
